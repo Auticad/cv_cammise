@@ -3,38 +3,223 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CV — Auticad</title>
+  <title>CV — CAMMISE</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: sans-serif; background: #f4f4f4; }
-    header {
-      background: #111;
-      color: #fff;
-      padding: 16px 24px;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #eef2f7;
+      min-height: 100vh;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+    }
+
+    /* ── HERO CON SFONDO DECORATIVO ── */
+    .hero {
+      position: relative;
+      background: #1e3a5f;
+      padding: 40px 48px;
+      display: flex;
       align-items: center;
+      justify-content: space-between;
+      overflow: hidden;
+      gap: 24px;
     }
-    header a {
-      color: #fff;
-      background: #1a56db;
-      padding: 8px 16px;
-      text-decoration: none;
-      font-size: 0.9rem;
+
+    /* Strati decorativi puri CSS — nessuna immagine esterna */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 90% at 85% 50%,
+          rgba(37, 99, 180, 0.6) 0%,
+          transparent 70%),
+        radial-gradient(ellipse 30% 60% at 10% 80%,
+          rgba(15, 52, 96, 0.8) 0%,
+          transparent 60%);
     }
-    iframe {
-      display: block;
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          120deg,
+          rgba(255,255,255,0.025) 0px,
+          rgba(255,255,255,0.025) 1px,
+          transparent 1px,
+          transparent 52px
+        );
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-text h1 {
+      font-size: 1.7rem;
+      font-weight: 300;
+      color: #e8f0fb;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+    }
+
+    .hero-text p {
+      font-size: 0.88rem;
+      color: #93b8e0;
+    }
+
+    .hero-badge {
+      position: relative;
+      z-index: 1;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #d0e4f7;
+      padding: 6px 14px;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      border-radius: 2px;
+    }
+
+    /* ── CORPO PRINCIPALE ── */
+    .main {
+      flex: 1;
+      max-width: 900px;
       width: 100%;
-      height: calc(100vh - 56px);
+      margin: 0 auto;
+      padding: 32px 24px 48px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    .card-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid #e8ecf2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .card-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pdf-icon {
+      width: 32px;
+      height: 32px;
+      background: #1e3a5f;
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .pdf-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #1e2d40;
+    }
+
+    .pdf-meta {
+      font-size: 0.78rem;
+      color: #7a8fa8;
+      margin-top: 2px;
+    }
+
+    .btn-download {
+      background: #1e3a5f;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 9px 20px;
+      font-size: 0.83rem;
+      border-radius: 3px;
+      white-space: nowrap;
+      transition: background 0.15s;
+      display: inline-block;
+    }
+
+    .btn-download:hover { background: #2a5190; }
+
+    /* ── IFRAME PDF ── */
+    .pdf-viewer {
+      width: 100%;
+      height: calc(100vh - 220px);
+      min-height: 500px;
       border: none;
+      display: block;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.75rem;
+      color: #9aafc4;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .hero { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+      .hero-text h1 { font-size: 1.3rem; }
+      .main { padding: 20px 12px 40px; }
+      .card-header { flex-direction: column; align-items: flex-start; }
+      .btn-download { width: 100%; text-align: center; }
+      .pdf-viewer { height: 70vh; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <span>Curriculum Vitae — Auticad</span>
-    <a href="CV_Pietro_Cammise.pdf" download>Scarica PDF</a>
-  </header>
-  <iframe src="CV_Pietro_Cammise" title="Curriculum Vitae"></iframe>
+
+  <div class="hero">
+    <div class="hero-text">
+      <h1>Curriculum Vitae</h1>
+      <p>Cammise Pietro&nbsp;·&nbsp; aggiornato 2026</p>
+    </div>
+    <div class="hero-badge">Disponibile in PDF</div>
+  </div>
+
+  <main class="main">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-header-left">
+          <div class="pdf-icon">PDF</div>
+          <div>
+            <div class="pdf-name">CV_Pietro_Cammise.pdf</div>
+            <div class="pdf-meta">Visualizzazione inline — compatibile con tutti i browser desktop</div>
+          </div>
+        </div>
+        <a class="btn-download" href="CV_Pietro_Cammise.pdf" download>Scarica PDF ↓</a>
+      </div>
+      <iframe
+        class="pdf-viewer"
+        src="CV_Pietro_Cammise.pdf"
+        title="Curriculum Vitae — Cammise Pietro">
+      </iframe>
+    </div>
+  </main>
+
+  <footer>
+    Auticad.github.io/cv_cammise
+  </footer>
+
 </body>
 </html>
