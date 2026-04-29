@@ -1,0 +1,60 @@
+# .github/workflows/deploy.yml
+# Workflow: deploy automatico su GitHub Pages al push su main
+
+name: Deploy CV su GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:   # permette il trigger manuale dalla UI
+
+# Permessi necessari per scrivere su GitHub Pages
+permissions:
+  contents: read
+  pages:    write
+  id-token: write
+
+# Evita deploy paralleli: se arriva un push mentre un deploy è in corso,
+# annulla quello precedente e avvia il nuovo
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+
+  # ── JOB 1: validazione e preparazione ──────────────────────
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verifica presenza file critici
+        run: |
+          # Controlla che il PDF e l'index esistano prima di pubblicare
+          test -f docs/index.html             || { echo "ERRORE: docs/index.html mancante"; exit 1; }
+          test -f docs/CV_Pietro_Cammise.pdf  || { echo "ERRORE: CV PDF mancante"; exit 1; }
+          echo "File critici trovati ✓"
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Carica artefatto (cartella /docs)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docs   # pubblica SOLO il contenuto di /docs
+
+  # ── JOB 2: deploy su GitHub Pages ──────────────────────────
+  deploy:
+    environment:
+      name: github-pages
+      url:  ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs:   build   # eseguito solo se build è OK
+    steps:
+
+      - name: Deploy su GitHub Pages
+        id:   deployment
+        uses: actions/deploy-pages@v4
