@@ -3,15 +3,13 @@
 <p align="center">
   <strong>Curriculum vitae interattivo pubblicato su GitHub Pages</strong><br/>
   Progettista 2D/3D · Sviluppatore autodidatta · Data Analytics<br/><br/>
-  <a href="https://pietrocammise.dev">&#127760; pietrocammise.dev</a>
-  &nbsp;·&nbsp;
   <a href="https://auticad.github.io/cv_cammise">mirror GitHub Pages</a>
 </p>
 ---
  
 ## Panoramica
  
-CV personale di Pietro Cammise, pubblicato come sito statico su GitHub Pages con dominio custom `pietrocammise.dev`. Costruito interamente in HTML e CSS — nessun framework, nessuna dipendenza esterna.
+CV personale di Pietro Cammise, pubblicato come sito statico su GitHub Pages Costruito interamente in HTML e CSS — nessun framework, nessuna dipendenza esterna.
  
 ---
  
@@ -23,7 +21,6 @@ CV personale di Pietro Cammise, pubblicato come sito statico su GitHub Pages con
   <img src="https://img.shields.io/badge/GitHub_Pages-deploy-f7c948?style=for-the-badge&logo=github&logoColor=1a1a1a" alt="GitHub Pages"/>
 </p>
 <p align="center">
-  <img src="https://img.shields.io/badge/Dominio_custom-pietrocammise.dev-4a6cf7?style=flat-square&logo=googlechrome&logoColor=white" alt="Custom domain"/>
   <img src="https://img.shields.io/badge/Deploy-automatico_via_Actions-f7c948?style=flat-square&logo=githubactions&logoColor=1a1a1a" alt="GitHub Actions"/>
 </p>
 ---
@@ -68,8 +65,7 @@ python -m http.server 8080 --directory docs
  
 ## Deploy
  
-Il sito è pubblicato tramite **GitHub Pages** con deploy dalla cartella `docs/` del branch `main`. Il dominio custom `pietrocammise.dev` è configurato tramite file CNAME nella stessa cartella.
- 
+Il sito è pubblicato tramite **GitHub Pages** con deploy dalla cartella `docs/` del branch `main`. 
 Ogni push su `main` aggiorna automaticamente il sito live tramite GitHub Actions.
  
 ---
@@ -88,10 +84,6 @@ Ogni push su `main` aggiorna automaticamente il sito live tramite GitHub Actions
  
 <p align="center">
   <a href="mailto:pietro_cam@hotmail.com">pietro_cam@hotmail.com</a>
-  &nbsp;·&nbsp;
-  Milano
-  &nbsp;·&nbsp;
-  <a href="https://pietrocammise.dev">pietrocammise.dev</a>
   &nbsp;·&nbsp;
   <a href="https://auticad.github.io/portfolio-cammise">Portfolio 2D/3D</a>
 </p>
